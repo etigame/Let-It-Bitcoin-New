@@ -1,0 +1,16 @@
+.app-footer {
+    margin-block-start: 18px;
+    background-color: #00000052;
+
+    & > * {
+        color: $clr6;
+    }
+
+    p:first-child {
+        color: $clr1;
+    }
+
+    p:last-child {
+        font-size: rem(14px);
+    }
+}

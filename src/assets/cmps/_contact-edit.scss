@@ -1,0 +1,81 @@
+.contact-edit {
+  margin: 20px auto;
+  padding: 0 100px;
+  background-color: rgba(255, 255, 255, 0.098);
+  border-radius: em(6px, 18px);
+  border: 1px solid $clr1;
+  position: relative;
+
+  .contact-img {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin: 20px 0;
+  }
+
+  .back-btn {
+    background: transparent;
+    border: none;
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  & > h1 {
+    font-size: rem(30px);
+    color: $clr1;
+    margin-block-start: 20px;
+  }
+
+  label {
+    margin-block-end: em(5px, 18px);
+  }
+
+  input {
+    margin-block-end: 20px;
+  }
+
+  .btn-save {
+    border-radius: em(6px, 18px);
+    position: relative;
+    padding: em(12px, 18px) em(20px, 18px);
+    margin-block-end: 30px;
+    color: $clr5;
+    background-color: $clr1;
+    border: 1px solid $clr1;
+    width: 100px;
+    align-self: center;
+    font-size: rem(18px);
+
+    &:hover {
+      color: $clr1;
+      background-color: inherit;
+    }
+  }
+
+  .btn-delete {
+    margin-block-start: -12px;
+    border-radius: em(6px, 18px);
+    position: relative;
+    margin-block-end: 30px;
+    color: $clr5;
+    background-color: rgb(194, 21, 21);
+    border: 1px solid rgb(194, 21, 21);
+    width: 40px;
+    height: 40px;
+    align-self: center;
+    font-size: rem(18px);
+
+    img {
+        height: 22px;
+        width: 22px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+  }
+}

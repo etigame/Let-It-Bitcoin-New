@@ -1,0 +1,36 @@
+.home {
+  margin: 20px 80px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  min-height: 75vh;
+  background-color: rgba(255, 255, 255, 0.098);
+  border-radius: em(6px, 18px);
+  border: 1px solid $clr1;
+
+  .user-info {
+    margin: 20px 0 0 20px;
+
+    h1 {
+      font-size: 1.5rem;
+      margin-block-end: em(40px, 24px);
+    }
+
+    span {
+      margin-inline-start: em(5px, 18px);
+      color: lightgray;
+    }
+
+    p:last-child {
+      margin-block-start: 55px;
+      color: $clr1;
+    }
+
+    .btc {
+      color: $clr1;
+    }
+  }
+
+  .move-list-container {
+    margin: 20px 80px 0 20px;
+  }
+}

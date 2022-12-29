@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background-color: $clr1;
+  color: $clr6;
+}
+
+html {
+  font-family: macan-regular;
+  // line-height: 1.6;
+  color: $clr6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span {
+  font-family: macan-regular;
+  color: $clr6;
+}
+
+input {
+  border: 3px solid $clr1;
+  background-color: inherit;
+  border-radius: em(6px, 18px);
+  padding: em(13px, 18px);
+  font-size: rem(18px);
+
+
+  &:focus {
+    outline: none;
+    color: $clr5;
+    font-size: rem(18px);
+    padding: em(13px, 18px);
+  }
+}
+
+body {
+  // height: 100vh;
+  font-size: rem(18px);
+  margin: 0;
+  // overflow-x: scroll;
+}
+
+p {
+  margin: 0 0 1em;
+  // max-width: 40ch;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: $clr1;
+}
+
+::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $clr1;
+}
+button {
+  cursor: pointer;
+  &.icon {
+    background: none;
+    border: none;
+  }
+}
+
+.main-app {
+  background-image: url('https://res.cloudinary.com/dja6gjgcd/image/upload/v1672175630/samples/higherr/background-img_leufoi.png');
+  background-size: cover;
+}
+
+main {
+  min-height: 80.5vh;
+  background-color: #ffffff1f;
+}

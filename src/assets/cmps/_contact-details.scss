@@ -1,0 +1,65 @@
+.contact-details {
+  margin: 20px auto;
+  padding: 0 100px;
+  background-color: rgba(255, 255, 255, 0.098);
+  border-radius: em(6px, 18px);
+  border: 1px solid $clr1;
+  position: relative;
+
+  .contact-img {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin: 20px 0;
+  }
+
+  & > h1 {
+    font-size: rem(30px);
+    color: $clr1;
+  }
+
+  & > p:first-of-type {
+    margin-block-start: em(18px, 18px);
+  }
+
+  .back-btn {
+    background: transparent;
+    border: none;
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  .btn-edit {
+    border-radius: em(6px, 18px);
+    position: relative;
+    padding: em(10px, 18px) em(20px, 18px);
+    margin-block-end: 30px;
+    background-color: inherit;
+    box-shadow: inset 0px 0px 0px 1px $clr1;
+    color: $clr1;
+
+    &:hover {
+      color: $clr5;
+      background-color: $clr1;
+    }
+  }
+}
+
+.transfer-fund {
+    margin-block-end: 20px;
+
+  .btn-transfer {
+    font-size: rem(18px);
+    border-radius: 0 em(6px, 18px) em(6px, 18px) 0;
+    padding: em(16.1px, 18px) em(15px, 18px);
+    margin-block-end: 30px;
+    border: 1px solid $clr1;
+    color: $clr5;
+    background-color: $clr1;
+    margin-inline-start: -5px;
+  }
+}

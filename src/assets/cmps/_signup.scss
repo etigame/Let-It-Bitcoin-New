@@ -1,0 +1,44 @@
+.signup {
+  margin: 20px auto;
+  padding: 0 100px;
+  background-color: rgba(255, 255, 255, 0.098);
+  border-radius: em(6px, 18px);
+  border: 1px solid $clr1;
+  position: relative;
+
+  img {
+    margin: 20px 0;
+  }
+
+  & > h1 {
+    font-size: rem(30px);
+    color: $clr1;
+    margin-block-end: 20px;
+  }
+
+  label {
+    margin-block-end: em(5px, 18px);
+  }
+
+  input {
+    margin-block-end: 20px;
+  }
+
+  .signup-btn {
+    border-radius: em(6px, 18px);
+    position: relative;
+    padding: em(12px, 18px) em(20px, 18px);
+    margin-block-end: 30px;
+    color: $clr5;
+    background-color: $clr1;
+    border: 1px solid $clr1;
+    width: 100px;
+    align-self: center;
+    font-size: rem(18px);
+
+    &:hover {
+      color: $clr1;
+      background-color: inherit;
+    }
+  }
+}

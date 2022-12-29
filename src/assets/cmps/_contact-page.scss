@@ -1,0 +1,22 @@
+.contact-page {
+  margin: 20px 0;
+
+  .top {
+    margin-block-end: 20px;
+  }
+
+  .add-contact {
+    border-radius: em(6px, 18px);
+    background-color: $clr1;
+    position: relative;
+    color: $clr5;
+    padding: em(18px, 18px) em(36px, 18px);
+
+    &:hover {
+        background-color: inherit;
+        box-shadow: inset 0px 0px 0px 1px $clr1;
+        color: $clr1;
+    }
+
+  }
+}

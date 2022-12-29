@@ -1,0 +1,10 @@
+.statistic-page {
+    margin: 20px 0;
+}
+
+.market-price-chart, .trade-volume-chart {
+    margin-block-end: 20px;
+    h3, p {
+        margin-block-end: em(15px, 18px);
+    }
+}

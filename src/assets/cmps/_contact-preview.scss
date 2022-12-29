@@ -1,0 +1,33 @@
+.contact-preview-content {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.23);
+  height: 10vh;
+  border-radius: em(6px, 18px);
+  padding: em(5px, 18px);
+
+  &:hover {
+    box-shadow: inset 0px 0px 0px 1px $clr1;
+    }
+
+  img {
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  span {
+    margin-inline-start: 1em;
+    margin-block-start: 2px;
+    font-size: rem(18px);
+  }
+
+  span:last-of-type {
+    color: lightgray;
+  }
+
+  .contact-details-container {
+    gap: em(5px, 18px);
+  }
+}

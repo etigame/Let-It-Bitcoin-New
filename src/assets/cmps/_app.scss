@@ -1,0 +1,27 @@
+#app {
+  height: 100%;
+  // background: lightblue;
+}
+.app-container {
+  &.main-container {
+    padding: 0;
+    height: 100%;
+    grid-template-rows: 50px 1fr 150px;
+
+    main {
+      overflow-y: auto;
+      background: lightgoldenrodyellow;
+    }
+
+    header {
+      background: lightgreen;
+    }
+
+    footer {
+      background: lightpink;
+    }
+    main {
+      padding: 1em 0;
+    }
+  }
+}
