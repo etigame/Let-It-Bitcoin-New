@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/Let-It-Bitcoin-New/static/css/main.0907935c.css",
+    "main.js": "/Let-It-Bitcoin-New/static/js/main.9fc53e22.js",
+    "static/js/787.44e08b13.chunk.js": "/Let-It-Bitcoin-New/static/js/787.44e08b13.chunk.js",
+    "static/media/macan-light.ttf": "/Let-It-Bitcoin-New/static/media/macan-light.75c0fb9306a207ee180f.ttf",
+    "static/media/macan-bold.ttf": "/Let-It-Bitcoin-New/static/media/macan-bold.29c28b1d0173728738dc.ttf",
+    "static/media/macan-regular.woff2": "/Let-It-Bitcoin-New/static/media/macan-regular.60c84fbe6363b59af251.woff2",
+    "index.html": "/Let-It-Bitcoin-New/index.html",
+    "main.0907935c.css.map": "/Let-It-Bitcoin-New/static/css/main.0907935c.css.map",
+    "main.9fc53e22.js.map": "/Let-It-Bitcoin-New/static/js/main.9fc53e22.js.map",
+    "787.44e08b13.chunk.js.map": "/Let-It-Bitcoin-New/static/js/787.44e08b13.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0907935c.css",
+    "static/js/main.9fc53e22.js"
+  ]
+}
