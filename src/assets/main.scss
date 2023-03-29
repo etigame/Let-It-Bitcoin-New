@@ -8,8 +8,6 @@
 @import 'basics/helpers';
 @import 'basics/layout';
 @import 'basics/base';
-@import 'basics/links';
-@import 'basics/forms';
 
 // Components
 @import 'cmps/_app';
@@ -19,12 +17,14 @@
 @import 'cmps/contact-list';
 @import 'cmps/social-media';
 @import 'cmps/app-nav';
-@import 'cmps/contact-details';
-@import 'cmps/contact-page';
 @import 'cmps/app-footer';
 @import 'cmps/loader';
-@import 'cmps/home';
 @import 'cmps/move-list';
-@import 'cmps/statistic-page';
+
+// Views
+@import 'cmps/contact-details';
 @import 'cmps/contact-edit';
+@import 'cmps/contact-page';
+@import 'cmps/home';
 @import 'cmps/signup';
+@import 'cmps/statistic-page';

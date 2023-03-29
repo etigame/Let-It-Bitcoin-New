@@ -4,8 +4,10 @@ import { storageService } from './storage.service';
 export const contactService = {
     getContacts,
     getContactById,
+    addContact,
+    updateContact,
     deleteContact,
-    saveContact,
+    // saveContact,
     getEmptyContact
 }
 
@@ -195,7 +197,7 @@ function deleteContact(id) {
     })
 }
 
-function _updateContact(contact) {
+function updateContact(contact) {
     return new Promise((resolve, reject) => {
         const contacts = storageService.load(CONTACTS_KEY)
         const index = contacts.findIndex(c => contact._id === c._id)
@@ -207,7 +209,7 @@ function _updateContact(contact) {
     })
 }
 
-function _addContact(contact) {
+function addContact(contact) {
     return new Promise((resolve, reject) => {
         const contacts = storageService.load(CONTACTS_KEY)
         contact._id = _makeId()
@@ -217,9 +219,9 @@ function _addContact(contact) {
     })
 }
 
-function saveContact(contact) {
-    return contact._id ? _updateContact(contact) : _addContact(contact)
-}
+// function saveContact(contact) {
+//     return contact._id ? _updateContact(contact) : _addContact(contact)
+// }
 
 function getEmptyContact() {
     const randomGender = Math.random() > 0.5 ? 'female' : 'male'
@@ -239,8 +241,6 @@ function filter(term) {
             contact.email.toLocaleLowerCase().includes(term)
     })
 }
-
-
 
 function _makeId(length = 10) {
     var txt = ''

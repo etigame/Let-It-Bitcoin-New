@@ -1,36 +1,31 @@
 import { Component } from 'react'
 import { Loader } from '../cmps/Loader'
 import { MoveList } from '../cmps/MoveList'
-import { bitcoinService } from '../services/bitcoin.service'
-import { userService } from '../services/user.service'
+// import { bitcoinService } from '../services/bitcoin.service'
+import { getLoggedInUser } from '../store/actions/user.actions'
+import { connect } from 'react-redux'
 
-export class Home extends Component {
-  state = {
-    loggedInUser: null,
-    btcRate: null,
-  }
+class _Home extends Component {
+  // state = {
+  //   btcRate: null,
+  // }
 
   componentDidMount() {
-    this.loadUser()
-    this.loadBtcRate()
+    this.props.getLoggedInUser()
+    // this.loadBtcRate()
   }
 
-  loadUser = () => {
-    const loggedInUser = userService.getLoggedInUser()
-    this.setState({ loggedInUser })
-  }
-
-  loadBtcRate = async () => {
-    try {
-      const btcRate = await bitcoinService.getRate()
-      this.setState({ btcRate })
-    } catch (err) {
-      console.log('err:', err)
-    }
-  }
+  // loadBtcRate = async () => {
+  //   try {
+  //     const btcRate = await bitcoinService.getRate()
+  //     this.setState({ btcRate })
+  //   } catch (err) {
+  //     console.log('err:', err)
+  //   }
+  // }
 
   render() {
-    const { loggedInUser, btcRate } = this.state
+    const { loggedInUser, btcRate } = this.props
     if (!loggedInUser || !btcRate) return <Loader />
 
     const { name, coins } = loggedInUser
@@ -61,3 +56,14 @@ export class Home extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  loggedInUser: state.userModule.loggedInUser,
+  btcRate: state.bitcoinModule.btcRate
+})
+
+const mapDispatchToProps = {
+  getLoggedInUser
+}
+
+export const Home = connect(mapStateToProps, mapDispatchToProps)(_Home)

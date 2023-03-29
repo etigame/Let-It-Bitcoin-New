@@ -1,16 +1,18 @@
 import { Component } from 'react'
 import { Loader } from '../cmps/Loader'
 import { userService } from '../services/user.service'
+import { connect } from 'react-redux'
+import { signup } from '../store/actions/user.actions'
 
-export class Signup extends Component {
+class _Signup extends Component {
   state = {
     user: userService.getEmptyUser(),
   }
 
   onSignup = async (ev) => {
-    ev.preventDefault()
     try {
-      await userService.signup({ ...this.state.user })
+      ev.preventDefault()
+      this.props.signup({ ...this.state.user })
       this.props.history.push('/')
     } catch (err) {
       console.log('err:', err)
@@ -55,7 +57,7 @@ export class Signup extends Component {
             alt="logo-img"
           />
           <h1>Welcome</h1>
-          <form onSubmit={this.onSignup} className='flex column align-center'>
+          <form onSubmit={this.onSignup} className="flex column align-center">
             <label htmlFor="name">Please enter your name</label>
             <input
               onChange={this.handleChange}
@@ -66,10 +68,16 @@ export class Signup extends Component {
               id="name"
             />
 
-            <button className='signup-btn'>Let It</button>
+            <button className="signup-btn">Let It</button>
           </form>
         </section>
       </section>
     )
   }
 }
+
+const mapDispatchToProps = {
+  signup,
+}
+
+export const Signup = connect(null, mapDispatchToProps)(_Signup)

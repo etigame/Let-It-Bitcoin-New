@@ -2,24 +2,19 @@ import { Component } from 'react'
 
 export class TransferFund extends Component {
   state = {
-    amount: ''
+    amount: '',
   }
 
   onTransfer = (ev) => {
     ev.preventDefault()
-    // try {
-      const {amount} = this.state
-      const { maxCoins } = this.props
-      if (amount > maxCoins || amount < 1) return
-      // await userService.addMove(contact, amount)
-      this.props.onTransferCoins(amount)
-      this.setState({amount: ''})
-    // } catch (err) {
-    //   console.log('err:', err)
-    // }
+    const { amount } = this.state
+    const { maxCoins } = this.props
+    if (amount > maxCoins || amount < 1) return
+    this.props.onTransferCoins(amount)
+    this.setState({ amount: '' })
   }
 
-  handleChange = ({target}) => {
+  handleChange = ({ target }) => {
     let field = target.name
     let value = target.value
 
@@ -35,7 +30,7 @@ export class TransferFund extends Component {
         break
     }
 
-    this.setState({[field]: value})
+    this.setState({ [field]: value })
   }
 
   handleRef = (elInput) => {
@@ -43,17 +38,25 @@ export class TransferFund extends Component {
   }
 
   render() {
-    const {amount} = this.state
+    const { amount } = this.state
     // if (!amount) return <div>Loading...</div>
 
     return (
-    <section className='transfer-fund'>
-      <form onSubmit={this.onTransfer}>
-          <input onChange={this.handleChange} value={amount} type="text" ref={this.handleRef} name="amount" id="amount" placeholder='Amount'/>
+      <section className="transfer-fund">
+        <form onSubmit={this.onTransfer}>
+          <input
+            onChange={this.handleChange}
+            value={amount}
+            type="text"
+            ref={this.handleRef}
+            name="amount"
+            id="amount"
+            placeholder="Amount"
+          />
 
-          <button className='btn-transfer bold'>Transfer</button>
+          <button className="btn-transfer bold">Transfer</button>
         </form>
-    </section>
+      </section>
     )
   }
 }

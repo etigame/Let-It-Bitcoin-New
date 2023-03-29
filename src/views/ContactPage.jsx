@@ -1,37 +1,34 @@
 import { Component } from 'react'
 import { ContactList } from '../cmps/ContactList'
-import { contactService } from '../services/contact.service'
 import { ContactFilter } from '../cmps/ContactFilter'
+import { loadContacts, setFilterBy } from '../store/actions/contact.actions'
 import { Link } from 'react-router-dom'
 import { Loader } from '../cmps/Loader'
+import { connect } from 'react-redux'
 
-export class ContactPage extends Component {
-  state = {
-    contacts: null,
-    filterBy: {
-      term: '',
-    },
-  }
+class _ContactPage extends Component {
 
   componentDidMount() {
-    this.loadContacts()
+    this.props.loadContacts()
   }
 
-  loadContacts = async () => {
-    try {
-      const contacts = await contactService.getContacts(this.state.filterBy)
-      this.setState({ contacts })
-    } catch (err) {
-      console.log('err:', err)
-    }
-  }
+  // loadContacts = async () => {
+  //   try {
+  //     const contacts = await contactService.getContacts(this.props.filterBy)
+  //     this.props.dispatch({ type: 'LOAD_CONTACTS', contacts })
+  //   } catch (err) {
+  //     console.log('err:', err)
+  //   }
+  // }
 
   onChangeFilter = (filterBy) => {
-    this.setState({ filterBy }, this.loadContacts)
+    this.props.setFilterBy(filterBy)
+    this.props.loadContacts()
+    // this.setState({ filterBy }, this.loadContacts)
   }
 
   render() {
-    const { contacts, filterBy } = this.state
+    const { contacts, filterBy } = this.props
     if (!contacts) return <Loader/>
     return (
       <section className="contact-page main-container full">
@@ -44,3 +41,15 @@ export class ContactPage extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  contacts: state.contactModule.contacts,
+  filterBy: state.contactModule.filterBy
+})
+
+const mapDispatchToProps = {
+  loadContacts,
+  setFilterBy
+}
+
+export const ContactPage = connect(mapStateToProps, mapDispatchToProps)(_ContactPage)

@@ -1,77 +1,80 @@
 import { Component } from 'react'
-import { contactService } from '../services/contact.service'
-import { bitcoinService } from '../services/bitcoin.service'
+// import { contactService } from '../services/contact.service'
+// import { bitcoinService } from '../services/bitcoin.service'
+import { getLoggedInUser, addMove } from '../store/actions/user.actions'
+import { getContactById } from '../store/actions/contact.actions'
 import { Link } from 'react-router-dom'
 import { TransferFund } from '../cmps/TransferFund'
 import { MoveList } from '../cmps/MoveList'
-import { userService } from '../services/user.service'
+// import { userService } from '../services/user.service'
 import { Loader } from '../cmps/Loader'
+import { connect } from 'react-redux'
 
-export class ContactDetails extends Component {
+class _ContactDetails extends Component {
   state = {
-    contact: null,
     movesToContact: null,
-    btcRate: null,
-    loggedInUser: null
+    // btcRate: null,
   }
 
   componentDidMount() {
-    this.loadLoggedInUser()
-    this.loadContact()
+    this.props.getLoggedInUser()
+    this.props.getContactById(this.props.match.params.id)
     this.loadMovesToContact()
-    this.loadBtcRate()
+    // this.loadBtcRate()
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.id !== this.props.match.params.id) {
-      this.loadContact()
+      this.props.getContactById(this.props.match.params.id)
     }
   }
 
-  loadContact = async () => {
-    try {
-      const contact = await contactService.getContactById(this.props.match.params.id)
-      this.setState({ contact })
-    } catch (err) {
-      console.log('err:', err)
-    }
-  }
-
-  loadLoggedInUser (){
-      const loggedInUser = userService.getLoggedInUser()
-      if (loggedInUser) this.setState({ loggedInUser })
-  }
+  // loadContact = async () => {
+  //   try {
+  //     const contact = await contactService.getContactById(this.props.match.params.id)
+  //     this.setState({ contact })
+  //   } catch (err) {
+  //     console.log('err:', err)
+  //   }
+  // }
 
   loadMovesToContact = async () => {
-    const { moves } = await userService.getLoggedInUser()
-    const movesToContact = moves.filter(
-      (move) => move.toId === this.props.match.params.id
-    )
-    this.setState({ movesToContact })
+    try {
+      // const { moves } = await userService.getLoggedInUser()
+      const { moves } = await this.props.loggedInUser
+      const movesToContact = moves.filter(
+        (move) => move.toId === this.props.match.params.id
+      )
+      this.setState({ movesToContact })
+    } catch (err) {
+      console.log('err:', err);
+    }
   }
 
   onTransferCoins = (amount) => {
-    const updatedUser = userService.addMove(this.state.contact, amount)
-    this.setState({ loggedInUser: updatedUser })
+    // const updatedUser = userService.addMove(this.state.contact, amount)
+    // this.setState({ loggedInUser: updatedUser })
+    this.props.addMove(this.props.displayedContact, amount)
     this.props.history.push('/contact')
   }
 
-  loadBtcRate = async () => {
-    try {
-      const btcRate = await bitcoinService.getRate()
-      this.setState({ btcRate })
-    } catch (err) {
-      console.log('err:', err)
-    }
-  }
+  // loadBtcRate = async () => {
+  //   try {
+  //     const btcRate = await bitcoinService.getRate()
+  //     this.setState({ btcRate })
+  //   } catch (err) {
+  //     console.log('err:', err)
+  //   }
+  // }
 
   onBack = () => {
     this.props.history.push('/contact')
   }
 
   render() {
-    const { contact, movesToContact, loggedInUser, btcRate } = this.state
-    if (!contact || !movesToContact || !loggedInUser) return <Loader />
+    const { movesToContact } = this.state
+    const {loggedInUser, displayedContact, btcRate} = this.props
+    if (!displayedContact || !movesToContact || !loggedInUser || !btcRate) return <Loader />
 
     return (
       <section className="main-container full">
@@ -83,17 +86,17 @@ export class ContactDetails extends Component {
             />
           </button>
 
-          <img src={contact.imgUrl} alt="contact-img" className="contact-img" />
-          <h1>{contact.name}</h1>
-          <p>{contact.phone}</p>
-          <p>{contact.email}</p>
+          <img src={displayedContact.imgUrl} alt="contact-img" className="contact-img" />
+          <h1>{displayedContact.name}</h1>
+          <p>{displayedContact.phone}</p>
+          <p>{displayedContact.email}</p>
 
-          <Link to={`/contact/edit/${contact._id}`} className="btn-edit">
+          <Link to={`/contact/edit/${displayedContact._id}`} className="btn-edit">
             Edit
           </Link>
 
           <TransferFund
-            contact={contact}
+            contact={displayedContact}
             maxCoins={loggedInUser.coins}
             onTransferCoins={this.onTransferCoins}
           />
@@ -109,3 +112,17 @@ export class ContactDetails extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  loggedInUser: state.userModule.loggedInUser,
+  displayedContact: state.contactModule.displayedContact,
+  btcRate: state.bitcoinModule.btcRate
+})
+
+const mapDispatchToProps = {
+  getLoggedInUser,
+  addMove,
+  getContactById
+}
+
+export const ContactDetails = connect(mapStateToProps, mapDispatchToProps)(_ContactDetails)

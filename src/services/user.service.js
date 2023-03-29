@@ -2,7 +2,6 @@ import { storageService } from './storage.service'
 import { utilService } from './util.service'
 
 export const userService = {
-    // getUser,
     signup,
     getLoggedInUser,
     addMove,
@@ -10,16 +9,6 @@ export const userService = {
 }
 
 const LOGGEDIN_USER_KEY = 'loggedInUser'
-
-// const user = {
-//     name: 'Etika',
-//     coins: 9462,
-//     moves: []
-// }
-
-// function getUser() {
-//     return user
-// }
 
 function signup(user) {
     storageService.store(LOGGEDIN_USER_KEY, user)

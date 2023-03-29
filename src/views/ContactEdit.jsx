@@ -1,16 +1,19 @@
 import { Component } from 'react'
 import { Loader } from '../cmps/Loader'
 import { contactService } from '../services/contact.service'
+import { removeContact, getContactById, saveContact } from '../store/actions/contact.actions'
+import { connect } from 'react-redux'
 
-export class ContactEdit extends Component {
+class _ContactEdit extends Component {
   state = {
     contact: contactService.getEmptyContact(),
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const contactId = this.props.match.params.id
     if (contactId) {
-      const contact = await contactService.getContactById(contactId)
+      this.props.getContactById(contactId)
+      const contact = this.props.displayedContact
       this.setState({ contact })
     }
   }
@@ -18,7 +21,7 @@ export class ContactEdit extends Component {
   onAddContact = async (ev) => {
     ev.preventDefault()
     try {
-      await contactService.saveContact({ ...this.state.contact })
+      this.props.saveContact({ ...this.state.contact })
       this.props.history.push('/contact')
     } catch (err) {
       console.log('err:', err)
@@ -48,12 +51,21 @@ export class ContactEdit extends Component {
 
   onRemoveContact = async () => {
     try {
-      await contactService.deleteContact(this.state.contact._id)
+      this.props.removeContact(this.state.contact._id)
       this.props.history.push('/contact')
     } catch (err) {
-      console.log('err:', err)
-    }
+          console.log('err:', err)
+        }
   }
+
+  // onRemoveContact = async () => {
+  //   try {
+  //     await contactService.deleteContact(this.state.contact._id)
+  //     this.props.history.push('/contact')
+  //   } catch (err) {
+  //     console.log('err:', err)
+  //   }
+  // }
 
   onBack = () => {
     this.props.history.push(`/contact/${this.state.contact._id || ''}`)
@@ -68,6 +80,7 @@ export class ContactEdit extends Component {
     if (!contact) return <Loader />
 
     const { name, phone, email, imgUrl } = contact
+    
     return (
       <section className="main-container full">
         <section className="contact-edit flex column align-center">
@@ -120,3 +133,15 @@ export class ContactEdit extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  displayedContact: state.contactModule.displayedContact
+})
+
+const mapDispatchToProps = {
+  removeContact,
+  getContactById,
+  saveContact
+}
+
+export const ContactEdit = connect(mapStateToProps, mapDispatchToProps)(_ContactEdit)

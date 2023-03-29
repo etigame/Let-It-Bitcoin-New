@@ -2,7 +2,7 @@
   "name": "let-it-bitcoin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://etigame.github.io/Let-It-Bitcoin",
+  "homepage": "https://etigame.github.io/Let-It-Bitcoin-New",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -11,9 +11,12 @@
     "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
     "recharts": "^2.2.0",
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2",
     "sass": "^1.57.1",
     "web-vitals": "^2.1.4"
   },

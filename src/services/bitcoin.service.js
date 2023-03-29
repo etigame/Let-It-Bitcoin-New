@@ -6,7 +6,7 @@ export const bitcoinService = {
     getTradeVolume
 }
 
-function getRate(coins) {
+function getRate() {
     return new Promise((resolve, reject) => {
         const url = `https://blockchain.info/tobtc?currency=USD&value=1`
         let btcRate = axios.get(url).then(res => res.data)
